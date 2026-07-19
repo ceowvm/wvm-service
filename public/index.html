@@ -1,1 +1,139 @@
-<!doctype html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>WVM Analytics</title><link rel="stylesheet" href="/styles.css"></head><body><div class="shell"><header><img src="/assets/logo.svg" alt="WVM"><div><b>WVM Analytics</b><span>DEMO</span></div></header><main><section class="hero"><p class="eyebrow">WVM RESEARCH PLATFORM</p><h1>Какой анализ<br>вы хотите провести?</h1><p>Выберите инструмент, задайте параметры и получите таблицу. В деморежиме кредиты не списываются.</p></section><section class="tools"><button class="tool active" data-tool="competitors"><i>01</i><b>Анализ конкурентов</b><span>Название, официальный сайт и телефон.</span></button><button class="tool" data-tool="youtube"><i>02</i><b>Анализ YouTube-каналов</b><span>Каналы по нише, языку и выбранным параметрам.</span></button></section><section class="workspace"><div class="panel"><div class="panel-head"><div><p class="eyebrow">ПАРАМЕТРЫ</p><h2 id="formTitle">Анализ конкурентов</h2></div><strong id="step">01</strong></div><form id="form"><div id="competitorsForm"><label>Ниша<input id="cNiche" placeholder="Например: видеопродакшен"></label><label>Регион<input id="cRegion" placeholder="Например: Москва и Санкт-Петербург"></label><label>Количество компаний<input id="cCount" type="number" min="1" max="30" value="5"></label></div><div id="youtubeForm" class="hidden"><label>Ниша или тематика<input id="yNiche" placeholder="Например: маркетинг"></label><fieldset><legend>Языки каналов и количество</legend><div id="languages"></div></fieldset><fieldset><legend>Дополнительные столбцы</legend><div class="checks"><label><input type="checkbox" checked disabled>Название канала</label><label><input type="checkbox" checked disabled>Ссылка на канал</label><label><input type="checkbox" checked disabled>Подписчики</label><label><input class="extra" type="checkbox" value="tags">Теги канала</label><label><input class="extra" type="checkbox" value="description">Описание канала</label><label><input class="extra" type="checkbox" value="rubrics">Рубрики</label><label><input class="extra" type="checkbox" value="formats">Форматы контента</label></div></fieldset></div><div class="estimate"><div><small>Предварительная стоимость</small><b><span id="credits">0</span> кредитов</b><p id="estimateNote"></p></div><div>API × 3<br>1 кредит = 1 ₽</div></div><button id="submit" class="primary">ЗАПУСТИТЬ АНАЛИЗ <span>↗</span></button></form></div><aside><p class="eyebrow">ЧТО ПОЛУЧИТЕ</p><h3 id="asideTitle">База конкурентов</h3><ul id="asideList"><li>Название компании</li><li>Официальный сайт</li><li>Телефон</li><li>CSV-файл</li></ul><div class="note"><b>Демо без оплаты</b><p>Стоимость показана для проверки будущей модели монетизации.</p></div></aside></section><section id="status" class="status hidden"><div><p class="eyebrow">ИССЛЕДОВАНИЕ ВЫПОЛНЯЕТСЯ</p><h2 id="statusTitle">Запускаем задачу</h2></div><b id="percent">5%</b><div class="track"><i id="bar"></i></div><p id="statusText"></p><footer><span id="attempt">Попытка 1 из 3</span><span id="elapsed">0 сек.</span></footer></section><section id="results" class="results hidden"><div class="result-head"><div><p class="eyebrow">ГОТОВО</p><h2>Результаты анализа</h2><p id="meta"></p></div><button id="download">СКАЧАТЬ CSV ↓</button></div><div class="table"><table><thead id="thead"></thead><tbody id="tbody"></tbody></table></div></section><section id="error" class="error hidden"><div><b>Не удалось завершить анализ</b><p id="errorText"></p></div><button id="retry">ПОВТОРИТЬ</button></section></main><footer class="site-footer"><span>WEB VIDEO MARKETING © 2026</span><span>Данные из открытых источников требуют проверки.</span></footer></div><script src="/app.js"></script></body></html>
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07111c">
+  <title>AI Marketing</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <a class="brand" href="#" aria-label="AI Marketing">
+      <img src="/assets/logo.png" alt="AI Marketing">
+      <span>AI Marketing</span>
+    </a>
+    <nav>
+      <a class="nav-item active" href="#workspace"><span>⌕</span>Новый анализ</a>
+      <a class="nav-item muted" href="#results"><span>▤</span>Мои анализы</a>
+      <a class="nav-item muted" href="#"><span>◉</span>Баланс и кредиты</a>
+      <a class="nav-item muted" href="#"><span>?</span>Помощь</a>
+    </nav>
+    <div class="account"><b>WVM Studio</b><small>Демо-режим</small></div>
+  </aside>
+
+  <main>
+    <section class="page-head">
+      <p class="eyebrow">AI RESEARCH PLATFORM</p>
+      <h1>Выберите тип анализа</h1>
+      <p>Настройте параметры поиска и получите готовую таблицу с проверяемыми данными.</p>
+    </section>
+
+    <section class="tool-grid" aria-label="Тип анализа">
+      <button type="button" class="tool-card active" data-tool="competitors">
+        <span class="tool-icon">▥</span>
+        <span><b>Анализ конкурентов</b><small>Поиск компаний по нише и выбранным регионам.</small></span>
+        <i class="selector">✓</i>
+      </button>
+      <button type="button" class="tool-card" data-tool="youtube">
+        <span class="tool-icon purple">▷</span>
+        <span><b>Анализ YouTube-каналов</b><small>Поиск каналов по нише, языкам и регионам.</small></span>
+        <i class="selector"></i>
+      </button>
+    </section>
+
+    <section id="workspace" class="workspace">
+      <div class="form-card">
+        <div class="section-title">
+          <span class="section-icon">⌕</span>
+          <div><h2>Параметры поиска</h2><p id="sectionSubtitle">Анализ конкурентов</p></div>
+        </div>
+
+        <form id="form" novalidate>
+          <div id="competitorsForm">
+            <div class="form-grid">
+              <label class="field">
+                <span>Ниша</span>
+                <div class="input-wrap"><i>◇</i><input id="cNiche" autocomplete="off" placeholder="Например: видеопродакшен"></div>
+              </label>
+              <div class="field">
+                <span>Регионы и количество компаний</span>
+                <div class="picker-row">
+                  <div class="select-wrap"><select id="cRegionSelect"><option value="">Добавить регион</option></select></div>
+                  <button type="button" class="add-btn" id="addCompetitorRegion">＋ Добавить</button>
+                </div>
+                <div class="selected-list" id="competitorRegions"></div>
+                <small class="field-help">Выберите регионы и укажите количество компаний для каждого.</small>
+              </div>
+            </div>
+          </div>
+
+          <div id="youtubeForm" class="hidden">
+            <div class="form-grid">
+              <label class="field">
+                <span>Ниша</span>
+                <div class="input-wrap"><i>◇</i><input id="yNiche" autocomplete="off" placeholder="Например: маркетинг и продажи"></div>
+              </label>
+              <div class="field">
+                <span>Выберите языки и регионы каналов</span>
+                <div class="picker-row">
+                  <div class="select-wrap"><select id="youtubeTargetSelect"><option value="">Добавить язык или регион</option></select></div>
+                  <button type="button" class="add-btn purple" id="addYoutubeTarget">＋ Добавить</button>
+                </div>
+                <div class="selected-list" id="youtubeTargets"></div>
+                <small class="field-help">Для каждого языка или региона задайте нужное количество каналов.</small>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+            <fieldset>
+              <legend>Параметры поиска</legend>
+              <p class="legend-note">Выберите, какие данные нужно найти.</p>
+              <div class="checks">
+                <label><input type="checkbox" checked disabled><span>Название канала</span></label>
+                <label><input type="checkbox" checked disabled><span>Ссылка на канал</span></label>
+                <label><input type="checkbox" checked disabled><span>Подписчики</span></label>
+                <label><input class="extra" type="checkbox" value="email"><span>Email</span></label>
+                <label><input class="extra" type="checkbox" value="phone"><span>Телефон</span></label>
+                <label><input class="extra" type="checkbox" value="tags"><span>Теги канала</span></label>
+                <label><input class="extra" type="checkbox" value="description"><span>Описание</span></label>
+                <label><input class="extra" type="checkbox" value="rubrics"><span>Рубрики</span></label>
+                <label><input class="extra" type="checkbox" value="formats"><span>Форматы контента</span></label>
+              </div>
+            </fieldset>
+          </div>
+        </form>
+      </div>
+
+      <aside class="summary-card">
+        <h2>Итоговая сводка</h2>
+        <dl>
+          <div><dt>Тип анализа</dt><dd id="summaryType">Анализ конкурентов</dd></div>
+          <div><dt id="summaryTargetsTitle">Регионы и количество</dt><dd><ul id="summaryTargets"><li>Выберите хотя бы один регион</li></ul></dd></div>
+          <div><dt>Ориентировочное количество результатов</dt><dd class="accent"><span id="summaryCount">0</span></dd></div>
+          <div><dt>Стоимость</dt><dd class="price"><span id="credits">0</span> <small>кредитов</small></dd><p>1 кредит = 1 ₽</p></div>
+        </dl>
+        <button id="submit" form="form" class="primary">Запустить анализ <span>↗</span></button>
+        <small class="demo-note">⌑ Оплата отключена в демо-режиме</small>
+      </aside>
+    </section>
+
+    <section id="status" class="status hidden">
+      <div><p class="eyebrow">ИССЛЕДОВАНИЕ ВЫПОЛНЯЕТСЯ</p><h2 id="statusTitle">Запускаем задачу</h2></div>
+      <b id="percent">5%</b><div class="track"><i id="bar"></i></div><p id="statusText"></p>
+      <footer><span id="attempt">Попытка 1 из 3</span><span id="elapsed">0 сек.</span></footer>
+    </section>
+
+    <section id="results" class="results hidden">
+      <div class="result-head"><div><p class="eyebrow">ГОТОВО</p><h2>Результаты анализа</h2><p id="meta"></p></div><button id="download">Скачать CSV ↓</button></div>
+      <div class="table"><table><thead id="thead"></thead><tbody id="tbody"></tbody></table></div>
+    </section>
+
+    <section id="error" class="error hidden"><div><b>Не удалось завершить анализ</b><p id="errorText"></p></div><button id="retry">Повторить</button></section>
+    <p class="footnote">ⓘ Точная стоимость рассчитывается перед запуском на основе выбранных параметров.</p>
+  </main>
+</div>
+<script src="/app.js"></script>
+</body>
+</html>
