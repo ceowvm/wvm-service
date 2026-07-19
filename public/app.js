@@ -11,14 +11,89 @@ let eTimer;
 let startTime;
 
 const regions = [
-  ["ru", "Россия"], ["kz", "Казахстан"], ["ae", "ОАЭ"], ["by", "Беларусь"],
-  ["uz", "Узбекистан"], ["ge", "Грузия"], ["am", "Армения"], ["az", "Азербайджан"],
-  ["kg", "Кыргызстан"], ["md", "Молдова"], ["tr", "Турция"], ["de", "Германия"],
-  ["fr", "Франция"], ["it", "Италия"], ["es", "Испания"], ["gb", "Великобритания"],
-  ["us", "США"], ["ca", "Канада"], ["mx", "Мексика"], ["br", "Бразилия"],
-  ["ar", "Аргентина"], ["in", "Индия"], ["cn", "Китай"], ["jp", "Япония"],
-  ["kr", "Южная Корея"], ["id", "Индонезия"], ["th", "Таиланд"], ["vn", "Вьетнам"],
-  ["au", "Австралия"], ["za", "ЮАР"]
+  ["ady", "Республика Адыгея"],
+  ["altai-rep", "Республика Алтай"],
+  ["bash", "Республика Башкортостан"],
+  ["bury", "Республика Бурятия"],
+  ["dag", "Республика Дагестан"],
+  ["ing", "Республика Ингушетия"],
+  ["kab", "Кабардино-Балкарская Республика"],
+  ["kalm", "Республика Калмыкия"],
+  ["karach", "Карачаево-Черкесская Республика"],
+  ["karel", "Республика Карелия"],
+  ["komi", "Республика Коми"],
+  ["mari", "Республика Марий Эл"],
+  ["mord", "Республика Мордовия"],
+  ["sakha", "Республика Саха (Якутия)"],
+  ["ossetia", "Республика Северная Осетия — Алания"],
+  ["tatar", "Республика Татарстан"],
+  ["tyva", "Республика Тыва"],
+  ["udm", "Удмуртская Республика"],
+  ["khak", "Республика Хакасия"],
+  ["chech", "Чеченская Республика"],
+  ["chuv", "Чувашская Республика"],
+  ["altai-krai", "Алтайский край"],
+  ["zab", "Забайкальский край"],
+  ["kam", "Камчатский край"],
+  ["krasnodar", "Краснодарский край"],
+  ["krasnoyarsk", "Красноярский край"],
+  ["perm", "Пермский край"],
+  ["prim", "Приморский край"],
+  ["stav", "Ставропольский край"],
+  ["khab", "Хабаровский край"],
+  ["amur", "Амурская область"],
+  ["arkh", "Архангельская область"],
+  ["astr", "Астраханская область"],
+  ["belg", "Белгородская область"],
+  ["bry", "Брянская область"],
+  ["vlad", "Владимирская область"],
+  ["volg", "Волгоградская область"],
+  ["volog", "Вологодская область"],
+  ["vor", "Воронежская область"],
+  ["ivan", "Ивановская область"],
+  ["irk", "Иркутская область"],
+  ["kalin", "Калининградская область"],
+  ["kaluga", "Калужская область"],
+  ["kem", "Кемеровская область — Кузбасс"],
+  ["kirov", "Кировская область"],
+  ["kost", "Костромская область"],
+  ["kurg", "Курганская область"],
+  ["kursk", "Курская область"],
+  ["len", "Ленинградская область"],
+  ["lip", "Липецкая область"],
+  ["mag", "Магаданская область"],
+  ["mos-ob", "Московская область"],
+  ["mur", "Мурманская область"],
+  ["nnov", "Нижегородская область"],
+  ["novg", "Новгородская область"],
+  ["novosib", "Новосибирская область"],
+  ["omsk", "Омская область"],
+  ["oren", "Оренбургская область"],
+  ["orel", "Орловская область"],
+  ["penza", "Пензенская область"],
+  ["pskov", "Псковская область"],
+  ["rost", "Ростовская область"],
+  ["ryaz", "Рязанская область"],
+  ["sam", "Самарская область"],
+  ["sarat", "Саратовская область"],
+  ["sakhalin", "Сахалинская область"],
+  ["sverd", "Свердловская область"],
+  ["smol", "Смоленская область"],
+  ["tamb", "Тамбовская область"],
+  ["tver", "Тверская область"],
+  ["tomsk", "Томская область"],
+  ["tula", "Тульская область"],
+  ["tyumen", "Тюменская область"],
+  ["ulyan", "Ульяновская область"],
+  ["chel", "Челябинская область"],
+  ["yar", "Ярославская область"],
+  ["moscow", "Москва"],
+  ["spb", "Санкт-Петербург"],
+  ["jew", "Еврейская автономная область"],
+  ["nen", "Ненецкий автономный округ"],
+  ["khmao", "Ханты-Мансийский автономный округ — Югра"],
+  ["chuk", "Чукотский автономный округ"],
+  ["yanao", "Ямало-Ненецкий автономный округ"]
 ];
 
 const languages = [
@@ -38,12 +113,11 @@ const competitorTargets = new Map();
 const youtubeTargets = new Map();
 
 function fillSelects() {
-  $("#cRegionSelect").innerHTML = '<option value="">Добавить регион</option>' +
+  $("#cRegionSelect").innerHTML = '<option value="">Добавить регион России</option>' +
     regions.map(([id, label]) => `<option value="${id}">${label}</option>`).join("");
 
-  $("#youtubeTargetSelect").innerHTML = '<option value="">Добавить язык или регион</option>' +
-    '<optgroup label="Языки">' + languages.map(([id, label]) => `<option value="${id}">${label}</option>`).join("") + '</optgroup>' +
-    '<optgroup label="Регионы">' + regions.map(([id, label]) => `<option value="region-${id}">${label}</option>`).join("") + '</optgroup>';
+  $("#youtubeTargetSelect").innerHTML = '<option value="">Добавить язык канала</option>' +
+    languages.map(([id, label]) => `<option value="${id}">${label}</option>`).join("");
 }
 
 function lookup(list, id) {
@@ -90,13 +164,10 @@ function addCompetitorRegion() {
 }
 
 function addYoutubeTarget() {
-  const raw = $("#youtubeTargetSelect").value;
-  if (!raw) return;
-  const isRegion = raw.startsWith("region-");
-  const baseId = isRegion ? raw.slice(7) : raw;
-  const id = raw;
-  const label = isRegion ? `Регион: ${lookup(regions, baseId)}` : `Язык: ${lookup(languages, baseId)}`;
-  if (!youtubeTargets.has(id)) youtubeTargets.set(id, { id, type: isRegion ? "region" : "language", code: baseId, label, count: 5 });
+  const id = $("#youtubeTargetSelect").value;
+  if (!id) return;
+  const label = lookup(languages, id);
+  if (!youtubeTargets.has(id)) youtubeTargets.set(id, { id, type: "language", code: id, label, count: 5 });
   $("#youtubeTargetSelect").value = "";
   renderSelected("#youtubeTargets", youtubeTargets, "youtube");
   updateSummary();
@@ -114,7 +185,7 @@ function payload() {
   return {
     tool,
     niche: $("#yNiche").value.trim(),
-    targets: [...youtubeTargets.values()].map((x) => ({ type: x.type, id: x.code, label: x.label.replace(/^(Язык|Регион): /, ""), count: clamp(x.count, 1, 50, 5) })),
+    targets: [...youtubeTargets.values()].map((x) => ({ type: x.type, id: x.code, label: x.label, count: clamp(x.count, 1, 50, 5) })),
     extraColumns: $$(".extra:checked").map((x) => x.value)
   };
 }
@@ -139,10 +210,10 @@ function updateSummary() {
   const p = payload();
   const items = p.tool === "competitors" ? p.regions : p.targets;
   $("#summaryType").textContent = p.tool === "competitors" ? "Анализ конкурентов" : "Анализ YouTube-каналов";
-  $("#summaryTargetsTitle").textContent = p.tool === "competitors" ? "Регионы и количество компаний" : "Языки, регионы и количество каналов";
+  $("#summaryTargetsTitle").textContent = p.tool === "competitors" ? "Регионы и количество компаний" : "Языки и количество каналов";
   $("#summaryTargets").innerHTML = items.length
     ? items.map((x) => `<li>${x.label} — ${x.count}</li>`).join("")
-    : `<li>${p.tool === "competitors" ? "Выберите хотя бы один регион" : "Выберите язык или регион"}</li>`;
+    : `<li>${p.tool === "competitors" ? "Выберите хотя бы один регион" : "Выберите хотя бы один язык"}</li>`;
   $("#summaryCount").textContent = `${requestedCount(p)} ${p.tool === "competitors" ? "компаний" : "каналов"}`;
   $("#credits").textContent = credits(p);
 }
@@ -254,7 +325,7 @@ async function run(p) {
 }
 
 fillSelects();
-competitorTargets.set("ru", { id: "ru", label: "Россия", count: 10 });
+competitorTargets.set("moscow", { id: "moscow", label: "Москва", count: 10 });
 renderSelected("#competitorRegions", competitorTargets, "region");
 
 $("#addCompetitorRegion").addEventListener("click", addCompetitorRegion);

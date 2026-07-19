@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#07111c">
+  <meta name="theme-color" content="#f5f8ff">
   <title>AI Marketing</title>
   <link rel="stylesheet" href="/styles.css">
 </head>
@@ -12,7 +12,7 @@
   <aside class="sidebar">
     <a class="brand" href="#" aria-label="AI Marketing">
       <img src="/assets/logo.png" alt="AI Marketing">
-      <span>AI Marketing</span>
+      <span><strong>WVM</strong><em>|</em> AI Marketing</span>
     </a>
     <nav>
       <a class="nav-item active" href="#workspace"><span>⌕</span>Новый анализ</a>
@@ -20,7 +20,7 @@
       <a class="nav-item muted" href="#"><span>◉</span>Баланс и кредиты</a>
       <a class="nav-item muted" href="#"><span>?</span>Помощь</a>
     </nav>
-    <div class="account"><b>WVM Studio</b><small>Демо-режим</small></div>
+    <div class="account"><b>WVM Demo режим</b><small>Тестовая версия платформы</small></div>
   </aside>
 
   <main>
@@ -38,7 +38,7 @@
       </button>
       <button type="button" class="tool-card" data-tool="youtube">
         <span class="tool-icon purple">▷</span>
-        <span><b>Анализ YouTube-каналов</b><small>Поиск каналов по нише, языкам и регионам.</small></span>
+        <span><b>Анализ YouTube-каналов</b><small>Поиск каналов по нише и выбранным языкам.</small></span>
         <i class="selector"></i>
       </button>
     </section>
@@ -76,13 +76,13 @@
                 <div class="input-wrap"><i>◇</i><input id="yNiche" autocomplete="off" placeholder="Например: маркетинг и продажи"></div>
               </label>
               <div class="field">
-                <span>Выберите языки и регионы каналов</span>
+                <span>Выберите языки канала</span>
                 <div class="picker-row">
-                  <div class="select-wrap"><select id="youtubeTargetSelect"><option value="">Добавить язык или регион</option></select></div>
+                  <div class="select-wrap"><select id="youtubeTargetSelect"><option value="">Добавить язык канала</option></select></div>
                   <button type="button" class="add-btn purple" id="addYoutubeTarget">＋ Добавить</button>
                 </div>
                 <div class="selected-list" id="youtubeTargets"></div>
-                <small class="field-help">Для каждого языка или региона задайте нужное количество каналов.</small>
+                <small class="field-help">Для каждого выбранного языка задайте нужное количество каналов.</small>
               </div>
             </div>
 
