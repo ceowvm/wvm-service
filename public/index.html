@@ -4,15 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5f8ff">
-  <title>AI Marketing</title>
+  <title>WVM Research</title>
   <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./telegram.css">
 </head>
 <body>
 <div class="app-shell">
   <aside class="sidebar">
-    <a class="brand" href="#" aria-label="AI Marketing">
-      <img src="./assets/logo.png" alt="AI Marketing">
-      <span><strong>WVM</strong><em>|</em> AI Marketing</span>
+    <a class="brand" href="#" aria-label="Web Video Marketing">
+      <img src="./assets/wvm-logo.svg" alt="Web Video Marketing">
     </a>
     <nav>
       <a class="nav-item active" href="#workspace"><span>⌕</span>Новый анализ</a>
@@ -25,113 +25,36 @@
 
   <main>
     <section class="page-head">
-      <p class="eyebrow">AI RESEARCH PLATFORM</p>
+      <p class="eyebrow">WVM RESEARCH PLATFORM</p>
       <h1>Выберите тип анализа</h1>
       <p>Настройте параметры поиска и получите готовую таблицу с проверяемыми данными.</p>
     </section>
 
     <section class="tool-grid" aria-label="Тип анализа">
-      <button type="button" class="tool-card active" data-tool="competitors">
-        <span class="tool-icon">▥</span>
-        <span><b>Анализ конкурентов</b><small>Поиск компаний по нише и выбранным регионам.</small></span>
-        <i class="selector">✓</i>
-      </button>
-      <button type="button" class="tool-card" data-tool="youtube">
-        <span class="tool-icon purple">▷</span>
-        <span><b>Анализ YouTube-каналов</b><small>Поиск каналов по нише и выбранным языкам.</small></span>
-        <i class="selector"></i>
-      </button>
+      <button type="button" class="tool-card active" data-tool="competitors"><span class="tool-icon">▥</span><span><b>Анализ конкурентов</b><small>Поиск компаний по нише и выбранным регионам.</small></span><i class="selector">✓</i></button>
+      <button type="button" class="tool-card" data-tool="youtube"><span class="tool-icon">▷</span><span><b>Анализ YouTube-каналов</b><small>Поиск каналов по нише и выбранным языкам.</small></span><i class="selector"></i></button>
+      <button type="button" class="tool-card" data-tool="telegram"><span class="tool-icon telegram-icon">✈</span><span><b>Поиск Telegram-каналов</b><small>Подбор публичных каналов по теме, размеру и активности.</small></span><i class="selector"></i></button>
     </section>
 
     <section id="workspace" class="workspace">
       <div class="form-card">
-        <div class="section-title">
-          <span class="section-icon">⌕</span>
-          <div><h2>Параметры поиска</h2><p id="sectionSubtitle">Анализ конкурентов</p></div>
-        </div>
-
+        <div class="section-title"><span class="section-icon">⌕</span><div><h2>Параметры поиска</h2><p id="sectionSubtitle">Анализ конкурентов</p></div></div>
         <form id="form" novalidate>
-          <div id="competitorsForm">
-            <div class="form-grid">
-              <label class="field">
-                <span>Ниша</span>
-                <div class="input-wrap"><i>◇</i><input id="cNiche" autocomplete="off" placeholder="Например: видеопродакшен"></div>
-              </label>
-              <div class="field">
-                <span>Регионы и количество компаний</span>
-                <div class="picker-row">
-                  <div class="select-wrap"><select id="cRegionSelect"><option value="">Добавить регион</option></select></div>
-                  <button type="button" class="add-btn" id="addCompetitorRegion">＋ Добавить</button>
-                </div>
-                <div class="selected-list" id="competitorRegions"></div>
-                <small class="field-help">Выберите регионы и укажите количество компаний для каждого.</small>
-              </div>
-            </div>
-          </div>
+          <div id="competitorsForm"><div class="form-grid"><label class="field"><span>Ниша</span><div class="input-wrap"><i>◇</i><input id="cNiche" autocomplete="off" placeholder="Например: видеопродакшен"></div></label><div class="field"><span>Регионы и количество компаний</span><div class="picker-row"><div class="select-wrap"><select id="cRegionSelect"><option value="">Добавить регион</option></select></div><button type="button" class="add-btn" id="addCompetitorRegion">＋ Добавить</button></div><div class="selected-list" id="competitorRegions"></div><small class="field-help">Выберите регионы и укажите количество компаний для каждого.</small></div></div></div>
 
-          <div id="youtubeForm" class="hidden">
-            <div class="form-grid">
-              <label class="field">
-                <span>Ниша</span>
-                <div class="input-wrap"><i>◇</i><input id="yNiche" autocomplete="off" placeholder="Например: маркетинг и продажи"></div>
-              </label>
-              <div class="field">
-                <span>Выберите языки канала</span>
-                <div class="picker-row">
-                  <div class="select-wrap"><select id="youtubeTargetSelect"><option value="">Добавить язык канала</option></select></div>
-                  <button type="button" class="add-btn purple" id="addYoutubeTarget">＋ Добавить</button>
-                </div>
-                <div class="selected-list" id="youtubeTargets"></div>
-                <small class="field-help">Для каждого выбранного языка задайте нужное количество каналов.</small>
-              </div>
-            </div>
+          <div id="youtubeForm" class="hidden"><div class="form-grid"><label class="field"><span>Ниша</span><div class="input-wrap"><i>◇</i><input id="yNiche" autocomplete="off" placeholder="Например: маркетинг и продажи"></div></label><div class="field"><span>Выберите языки канала</span><div class="picker-row"><div class="select-wrap"><select id="youtubeTargetSelect"><option value="">Добавить язык канала</option></select></div><button type="button" class="add-btn" id="addYoutubeTarget">＋ Добавить</button></div><div class="selected-list" id="youtubeTargets"></div><small class="field-help">Для каждого выбранного языка задайте нужное количество каналов.</small></div></div><div class="divider"></div><fieldset><legend>Какие данные собрать</legend><p class="legend-note">Базовые данные включены всегда. Дополнительные влияют на стоимость.</p><div class="checks"><label><input type="checkbox" checked disabled><span>Название</span></label><label><input type="checkbox" checked disabled><span>Ссылка</span></label><label><input type="checkbox" checked disabled><span>Подписчики</span></label><label><input class="extra" type="checkbox" value="email"><span>Email</span></label><label><input class="extra" type="checkbox" value="phone"><span>Телефон</span></label><label><input class="extra" type="checkbox" value="tags"><span>Теги</span></label><label><input class="extra" type="checkbox" value="description"><span>Описание</span></label><label><input class="extra" type="checkbox" value="rubrics"><span>Рубрики</span></label><label><input class="extra" type="checkbox" value="formats"><span>Форматы</span></label></div></fieldset></div>
 
-            <div class="divider"></div>
-            <fieldset>
-              <legend>Параметры поиска</legend>
-              <p class="legend-note">Выберите, какие данные нужно найти.</p>
-              <div class="checks">
-                <label><input type="checkbox" checked disabled><span>Название канала</span></label>
-                <label><input type="checkbox" checked disabled><span>Ссылка на канал</span></label>
-                <label><input type="checkbox" checked disabled><span>Подписчики</span></label>
-                <label><input class="extra" type="checkbox" value="email"><span>Email</span></label>
-                <label><input class="extra" type="checkbox" value="phone"><span>Телефон</span></label>
-                <label><input class="extra" type="checkbox" value="tags"><span>Теги канала</span></label>
-                <label><input class="extra" type="checkbox" value="description"><span>Описание</span></label>
-                <label><input class="extra" type="checkbox" value="rubrics"><span>Рубрики</span></label>
-                <label><input class="extra" type="checkbox" value="formats"><span>Форматы контента</span></label>
-              </div>
-            </fieldset>
-          </div>
+          <div id="telegramForm" class="hidden"><div class="telegram-grid"><label class="field wide"><span>Тематика или ключевые слова</span><div class="input-wrap"><i>◇</i><input id="tQuery" autocomplete="off" placeholder="Например: маркетинг, недвижимость, инвестиции"></div><small class="field-help">Поиск будет выполняться по названию и публичному описанию канала.</small></label><label class="field"><span>Количество каналов</span><div class="input-wrap"><input id="tCount" type="number" min="1" max="100" value="20"></div></label><label class="field"><span>Язык</span><div class="select-wrap"><select id="tLanguage"><option value="any">Любой</option><option value="ru">Русский</option><option value="en">Английский</option><option value="uk">Украинский</option><option value="other">Другой</option></select></div></label><label class="field"><span>Подписчиков от</span><div class="input-wrap"><input id="tMinSubs" type="number" min="0" value="1000"></div></label><label class="field"><span>Подписчиков до</span><div class="input-wrap"><input id="tMaxSubs" type="number" min="0" placeholder="Без ограничения"></div></label><label class="field"><span>Активность</span><div class="select-wrap"><select id="tActivity"><option value="any">Любая</option><option value="7">Пост за последние 7 дней</option><option value="30">Пост за последние 30 дней</option><option value="90">Пост за последние 90 дней</option></select></div></label></div><div class="divider"></div><fieldset><legend>Дополнительные фильтры</legend><div class="checks compact"><label><input class="t-filter" type="checkbox" value="public" checked><span>Только публичные</span></label><label><input class="t-filter" type="checkbox" value="contact"><span>Есть контакты</span></label><label><input class="t-filter" type="checkbox" value="verified"><span>Верифицированные</span></label><label><input class="t-filter" type="checkbox" value="exclude_bots" checked><span>Исключить ботов</span></label></div></fieldset><div class="divider"></div><fieldset><legend>Какие данные собрать</legend><p class="legend-note">Дополнительные поля увеличивают количество запросов и итоговую стоимость.</p><div class="checks"><label><input type="checkbox" checked disabled><span>Название</span></label><label><input type="checkbox" checked disabled><span>Ссылка</span></label><label><input type="checkbox" checked disabled><span>Подписчики</span></label><label><input class="t-extra" type="checkbox" value="description" checked><span>Описание</span></label><label><input class="t-extra" type="checkbox" value="username" checked><span>Username</span></label><label><input class="t-extra" type="checkbox" value="contacts"><span>Контакты</span></label><label><input class="t-extra" type="checkbox" value="last_post"><span>Последний пост</span></label><label><input class="t-extra" type="checkbox" value="frequency"><span>Частота публикаций</span></label><label><input class="t-extra" type="checkbox" value="category"><span>Тематика</span></label></div></fieldset><div class="api-note"><b>Интерфейс готов к подключению Telegram API</b><span>API ID и API Hash будут храниться на сервере и не попадут в браузер.</span></div></div>
         </form>
       </div>
 
-      <aside class="summary-card">
-        <h2>Итоговая сводка</h2>
-        <dl>
-          <div><dt>Тип анализа</dt><dd id="summaryType">Анализ конкурентов</dd></div>
-          <div><dt id="summaryTargetsTitle">Регионы и количество</dt><dd><ul id="summaryTargets"><li>Выберите хотя бы один регион</li></ul></dd></div>
-          <div><dt>Ориентировочное количество результатов</dt><dd class="accent"><span id="summaryCount">0</span></dd></div>
-          <div><dt>Стоимость</dt><dd class="price"><span id="credits">0</span> <small>кредитов</small></dd><p>1 кредит = 1 ₽</p></div>
-        </dl>
-        <button id="submit" form="form" class="primary">Запустить анализ <span>↗</span></button>
-        <small class="demo-note">⌑ Оплата отключена в демо-режиме</small>
-      </aside>
+      <aside class="summary-card"><h2>Итоговая сводка</h2><dl><div><dt>Тип анализа</dt><dd id="summaryType">Анализ конкурентов</dd></div><div><dt id="summaryTargetsTitle">Регионы и количество</dt><dd><ul id="summaryTargets"><li>Выберите хотя бы один регион</li></ul></dd></div><div><dt>Ориентировочное количество результатов</dt><dd class="accent"><span id="summaryCount">0</span></dd></div><div><dt>Расчётная стоимость</dt><dd class="price"><span id="credits">0</span> <small>кредитов</small></dd><p id="priceNote">1 кредит = 1 ₽, расчёт включает наценку ×3</p></div></dl><button id="submit" form="form" class="primary">Запустить анализ <span>↗</span></button><small class="demo-note">⌑ Оплата и API отключены в демо-режиме</small></aside>
     </section>
 
-    <section id="status" class="status hidden">
-      <div><p class="eyebrow">ИССЛЕДОВАНИЕ ВЫПОЛНЯЕТСЯ</p><h2 id="statusTitle">Запускаем задачу</h2></div>
-      <b id="percent">5%</b><div class="track"><i id="bar"></i></div><p id="statusText"></p>
-      <footer><span id="attempt">Попытка 1 из 3</span><span id="elapsed">0 сек.</span></footer>
-    </section>
-
-    <section id="results" class="results hidden">
-      <div class="result-head"><div><p class="eyebrow">ГОТОВО</p><h2>Результаты анализа</h2><p id="meta"></p></div><button id="download">Скачать CSV ↓</button></div>
-      <div class="table"><table><thead id="thead"></thead><tbody id="tbody"></tbody></table></div>
-    </section>
-
+    <section id="status" class="status hidden"><div><p class="eyebrow">ИССЛЕДОВАНИЕ ВЫПОЛНЯЕТСЯ</p><h2 id="statusTitle">Запускаем задачу</h2></div><b id="percent">5%</b><div class="track"><i id="bar"></i></div><p id="statusText"></p><footer><span id="attempt">Попытка 1 из 3</span><span id="elapsed">0 сек.</span></footer></section>
+    <section id="results" class="results hidden"><div class="result-head"><div><p class="eyebrow">ГОТОВО</p><h2>Результаты анализа</h2><p id="meta"></p></div><button id="download">Скачать CSV ↓</button></div><div class="table"><table><thead id="thead"></thead><tbody id="tbody"></tbody></table></div></section>
     <section id="error" class="error hidden"><div><b>Не удалось завершить анализ</b><p id="errorText"></p></div><button id="retry">Повторить</button></section>
-    <p class="footnote">ⓘ Точная стоимость рассчитывается перед запуском на основе выбранных параметров.</p>
+    <p class="footnote">ⓘ Стоимость предварительная и будет уточнена после подключения конкретного API-провайдера.</p>
   </main>
 </div>
 <script src="./app.js"></script>
